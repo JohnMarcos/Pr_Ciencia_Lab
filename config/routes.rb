@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'enrollments/new'
   get 'courses/index'
   get 'courses/show'
   devise_for :users
