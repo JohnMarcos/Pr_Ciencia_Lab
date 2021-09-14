@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'comments/new'
   get 'lessons/show'
   get 'enrollments/new'
   get 'courses/index'
