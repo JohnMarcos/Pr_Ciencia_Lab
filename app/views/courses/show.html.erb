@@ -5,6 +5,7 @@
 <p>Lección: <%= lesson.name %></p>
 <p>Curso id: <%= @course.id %></p>
 <p>Lección id: <%= lesson.id %></p>
+<p>Comentarios: <%= lesson.comments.count %></p>
 <%= link_to "Mas detalles", course_lesson_path(:course_id => @course, :id => lesson.id) %>
 <%end%>
 <br/>
