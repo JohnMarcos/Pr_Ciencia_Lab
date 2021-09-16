@@ -1,0 +1,9 @@
+<h1>Sobre el Curso</h1>
+<h1>Nombre del curso: <%= @course.name %></h1>
+<p>Descripción del curso: <%= @course.description %></p>
+<p>Lecciones: <% @course.lessons.each do |l| %></p>
+<p>Lección: <%= l.name %></p>
+<% link_to "Mas detalles", course_lessons_path(l.id) %>
+<%end%>
+<br/>
+<%= link_to "Volver a cursos", courses_path %>
