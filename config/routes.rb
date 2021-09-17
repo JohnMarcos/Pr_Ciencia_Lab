@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
   resources :courses, only: [:index, :show] do
-    resources :enrollments, only: [:new, :create]
+    resources :enrollments, only: [:index, :show, :new, :create]
     resources :lessons do
       resources :comments
     end

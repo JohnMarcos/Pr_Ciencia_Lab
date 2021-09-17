@@ -65,4 +65,11 @@ puts 'Creando 10 enrollment...'
   )
 end
 
+puts 'Creando cuenta John Videla...'
+
+john = User.create!(email: 'john.marcos.videla.r@gmail.com', password: '123456', first_name: 'John', last_name: 'Videla', profile: 'student')
+Enrollment.create!(user_id: john.id, course_id: Course.all.sample.id)
+Enrollment.create!(user_id: john.id, course_id: Course.all.sample.id)
+Enrollment.create!(user_id: john.id, course_id: Course.all.sample.id)
+
 puts '!Finalizado¡'
