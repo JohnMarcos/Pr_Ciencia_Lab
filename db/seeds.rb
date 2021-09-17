@@ -41,7 +41,7 @@ puts 'Creando 100 lessons...'
 100.times do
   Lesson.create!(
     name: Faker::Lorem.paragraph(sentence_count: 1),
-    description: Faker::Lorem.paragraph(sentence_count: 3),
+    description: Faker::Lorem.sentence(word_count: 1000, supplemental: true, random_words_to_add:200),
     course_id: Course.all.sample.id
   )
 end
@@ -50,7 +50,7 @@ puts 'Creando 200 comments...'
 
 200.times do
   Comment.create!(
-    comment: Faker::Lorem.paragraph(sentence_count: 4),
+    comment: Faker::Lorem.sentence(word_count: 5, supplemental: true, random_words_to_add:2),
     user_id: User.all.select { |user| user.profile == "student" }.sample.id,
     lesson_id: Lesson.all.sample.id
   )
