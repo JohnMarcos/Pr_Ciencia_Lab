@@ -26,9 +26,9 @@ puts 'Creando 20 usuarios student o teacher...'
   )
 end
 
-puts 'Creando 10 courses...'
+puts 'Creando 20 courses...'
 
-10.times do
+20.times do
   Course.create!(
     name: Faker::Educator.course_name,
     description: Faker::Educator.subject,
@@ -36,9 +36,9 @@ puts 'Creando 10 courses...'
   )
 end
 
-puts 'Creando 100 lessons...'
+puts 'Creando 200 lessons...'
 
-100.times do
+200.times do
   Lesson.create!(
     name: Faker::Lorem.paragraph(sentence_count: 1),
     description: Faker::Lorem.sentence(word_count: 600, supplemental: true, random_words_to_add:200),

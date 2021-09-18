@@ -8,7 +8,7 @@
 <p>Enrrolado: <%= @enrollment_status %></p>
 <h3>Lecciones: <% @course.lessons.each %></h3>
 <p><% @course.lessons.each_with_index do |lesson, i| %></p>
-<ul><%= 1+i %>.- <%= lesson.name %> %></ul>
+<ul><%= 1+i %>.- <%= lesson.name %></ul>
 <% i+=1 %>
 <%end%>
 <br/>
