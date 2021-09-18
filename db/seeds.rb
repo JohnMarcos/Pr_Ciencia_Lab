@@ -41,7 +41,7 @@ puts 'Creando 100 lessons...'
 100.times do
   Lesson.create!(
     name: Faker::Lorem.paragraph(sentence_count: 1),
-    description: Faker::Lorem.sentence(word_count: 1000, supplemental: true, random_words_to_add:200),
+    description: Faker::Lorem.sentence(word_count: 600, supplemental: true, random_words_to_add:200),
     course_id: Course.all.sample.id
   )
 end
@@ -71,5 +71,10 @@ john = User.create!(email: 'john.marcos.videla.r@gmail.com', password: '123456',
 Enrollment.create!(user_id: john.id, course_id: Course.all.sample.id)
 Enrollment.create!(user_id: john.id, course_id: Course.all.sample.id)
 Enrollment.create!(user_id: john.id, course_id: Course.all.sample.id)
+Enrollment.all.select { |enrollment| enrollment.user_id == john.id }.each do |enrollment|
+  5.times do
+    Comment.create!(user_id: john.id, lesson_id: enrollment.course.lessons.ids.sample, comment: 'Muy buena lección')
+  end
+end
 
 puts '!Finalizado¡'
