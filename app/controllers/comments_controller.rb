@@ -3,9 +3,6 @@ class CommentsController < ApplicationController
   before_action :set_comment, only: %i[show update destroy]
   before_action :set_params_course_enrollment_lesson, only: %i[create update destroy]
 
-  def show
-  end
-
   def new
     @comment = Comment.new
   end
