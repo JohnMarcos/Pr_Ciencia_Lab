@@ -1,5 +1,8 @@
 class CommentsController < ApplicationController
   def show
+    @course = Course.find(params[:course_id])
+    @enrollment = Enrollment.find(params[:enrollment_id])
+    @lesson = Lesson.find(params[:lesson_id])
     @comment = Comment.find(params[:id])
   end
 
@@ -18,6 +21,31 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
     @comment.lesson_id = params[:lesson_id]
     @comment.save
+    redirect_to course_enrollment_lesson_path(@course, @enrollment, @lesson)
+  end
+
+  def edit
+    @course = Course.find(params[:course_id])
+    @enrollment = Enrollment.find(params[:enrollment_id])
+    @lesson = Lesson.find(params[:lesson_id])
+    @comment = Comment.find(params[:comment_id])
+  end
+
+  def update
+    @course = params[:course_id]
+    @enrollment = params[:enrollment_id]
+    @lesson = params[:lesson_id]
+    @comment = Comment.find(params[:id])
+    @comment.update(comment_params)
+    redirect_to course_enrollment_lesson_path(@course, @enrollment, @lesson)
+  end
+
+  def destroy
+    @course = params[:course_id]
+    @enrollment = params[:enrollment_id]
+    @lesson = params[:lesson_id]
+    @comment = Comment.find(params[:id])
+    @comment.destroy
     redirect_to course_enrollment_lesson_path(@course, @enrollment, @lesson)
   end
 
