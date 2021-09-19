@@ -1,0 +1,18 @@
+<h1><%= @lesson.name %></h1>
+<p>Profesor: <%= @course.user.first_name %> <%= @course.user.last_name %></p>
+<p>Comentarios: <%= @course.comments.count %></p>
+<p>Lección: <%= @lesson.description %></p>
+<h2>Lecciones</h2>
+<ul>
+<% @course.lessons.each_with_index do |lesson, i| %>
+<li><%=1+i%>.- <%= link_to lesson.name, course_lesson_path(:course_id => @course, :id => lesson.id) %></li>
+<% i+=1 %>
+<% end %>
+</ul>
+<h2>Comentarios</h2>
+<p><% @lesson.comments.each do |com| %></p>
+<p>Usuario: <%= com.user.first_name %> <%= com.user.last_name %></p>
+<p>Fecha: <%= com.created_at %></p>
+<p>Comentario: <%= com.comment %></p>
+<p><% end %></p>
+<%= link_to "Volver al temario", course_path(@course) %>

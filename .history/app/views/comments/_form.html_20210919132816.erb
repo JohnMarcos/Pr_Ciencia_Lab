@@ -1,0 +1,16 @@
+<% if @enrollment.user_id == current_user.id %>
+<p> Ups, no eres el usuario correcto, edita o borra un comentario realizado por ti</p>
+<% else %>
+<p><%= simple_form_for [@course, @enrollment, @lesson, comment] do |f| %>
+<%= f.input :comment %>
+<%= f.submit %>
+<% end %>
+<% if @comment.id.nil?%>
+<% @comment.id = [] %>
+<% else %>
+<%= link_to 'Borrar', course_enrollment_lesson_comment_path(@course, @enrollment, @lesson, comment.id), method: :delete %> || 
+<% end%>
+<%raise%>
+<% path_volver = course_enrollment_lesson_path(@course, @enrollment, @lesson) %>
+<%= link_to 'Volver', path_volver %>
+<% end %>

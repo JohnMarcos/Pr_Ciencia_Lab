@@ -1,0 +1,13 @@
+<p><%= simple_form_for [@course, @enrollment, @lesson, comment] do |f| %>
+<%= f.input :comment %>
+<%= f.submit, class: "btn btn-primary" %>
+<% end %>
+<% if @comment.id.nil?%>
+<% @comment.id = [] %>
+<% else %>
+<%= link_to "Editar", edit_course_enrollment_lesson_comment_path(:course_id => @course.id, :enrollment_id => @enrollment.id, :lesson_id => @lesson.id, :comment_id => @comment.id ) %> || 
+<%= link_to 'Borrar', course_enrollment_lesson_comment_path(@course, @enrollment, @lesson, comment.id), method: :delete %>
+<% end%>
+<br/>
+<% path_volver = course_enrollment_lesson_path(@course, @enrollment, @lesson) %>
+<%= link_to 'Volver', path_volver %>

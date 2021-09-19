@@ -1,0 +1,8 @@
+<h1>Mis Cursos</h1>
+<h1><%= current_user.first_name %> <%= current_user.last_name %></h1>
+<% @course_enrollments.each do |e| %>
+<h2>Cursos: <%= @courses.select { |course| course.id == e.course_id }[0].name %></h2>
+<% c = @courses.select { |course| course.id == e.course_id }[0] %>
+<%= link_to "Ir a mi curso", course_lesson_path(:course_id => c.id, :id => c.lessons[0].id) %>
+<% end %>
+<%= link_to "Volver a Home", root_path %>

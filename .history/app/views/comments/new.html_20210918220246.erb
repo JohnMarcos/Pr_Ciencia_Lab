@@ -1,0 +1,6 @@
+<h1>Comments#new</h1>
+<p><%= simple_form_for(comments)  do |f| %>
+<%= f.input :content %>
+<%= f.submit %>
+<% end %></p>
+<%= link_to 'Back', :action => 'index' %>

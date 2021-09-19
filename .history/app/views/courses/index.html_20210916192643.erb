@@ -1,0 +1,10 @@
+<h1>Nuestros Cursos</h1>
+
+<% @courses.each do |c| %>
+<h2><%= c.name %></h2>
+<p><%= c.lessons.count %></p>
+<%= link_to "Más detalles", course_path(c.id) %>
+<% end %>
+<br/>
+<br/>
+<%= link_to "Volver a Home", root_path %>

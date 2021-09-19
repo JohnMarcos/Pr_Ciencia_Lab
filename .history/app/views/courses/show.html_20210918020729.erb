@@ -1,0 +1,18 @@
+<h1>Contenido del Curso</h1>
+<h2>Nombre del curso: <%= @course.name %></h2>
+<p>Descripción del curso: <%= @course.description %></p>
+<p>Profesor: <%= @course.user.first_name %> <%= @course.user.last_name %></p>
+<p>Lecciones: <%= @course.lessons.count %></p>
+<p>Comentarios: <%= @course.comments.count %></p>
+<p>Enrrolados: <%= @course.enrollments.count %></p>
+<p>Enrrolado: <%= @enrollment_status %></p>
+<h3>Lecciones: <% @course.lessons.each %></h3>
+<p><% @course.lessons.each_with_index do |lesson, i| %></p>
+<ul><%= 1+i %>.- <%= lesson.name %> %></ul>
+<% i+=1 %>
+<% a = link_to "Continuar Curso", course_enrollment_lesson_path(:course_id => @course.id, :enrollment_id => @current_user_enrollment[0].id, :id => lesson.id) %>
+<% b = "Suscribirse" %>
+<%= @enrollment_status == "Si" ? a : b %>
+<%end%>
+<br/>
+<%= link_to "Volver a cursos", courses_path %>

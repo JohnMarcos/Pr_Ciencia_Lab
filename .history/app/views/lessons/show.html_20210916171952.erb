@@ -1,0 +1,9 @@
+<h1><%= @lesson.name %></h1>
+<p>En esta lección hablaremos de:</p>
+<p><%= @lesson.description %></p>
+<h2>Comentarios</h2>
+<p><%= @lesson.comments.each do |com| %></p>
+<p>Usuario: <%= @User.name %></p>
+<p>Comentario: <%= com.comment %></p>
+<p><% end %></p>
+<%= link_to "Volver al temario", course_path(@course) %>

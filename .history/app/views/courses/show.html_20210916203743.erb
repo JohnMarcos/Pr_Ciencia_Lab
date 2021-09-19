@@ -1,0 +1,10 @@
+<h1>Contenido del Curso</h1>
+<h1>Nombre del curso: <%= @course.name %></h1>
+<p>Descripción del curso: <%= @course.description %></p>
+<p>Lecciones: <%= @course.lessons.count %></p>
+<p><% @course.lessons.each_with_index do |lesson, i| %></p>
+<p><%= i=1 %>.- <%= link_to lesson.name, course_lesson_path(:course_id => @course, :id => lesson.id) %> (<%= lesson.comments.count %> Comentarios)</p>
+<%= i+=1 %>
+<%end%>
+<br/>
+<%= link_to "Volver a cursos", courses_path %>

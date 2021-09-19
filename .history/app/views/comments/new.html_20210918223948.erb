@@ -1,0 +1,7 @@
+<h1>Comenta la lección</h1>
+<br/>
+<p><% simple_form_for [@course, @enrollment, @lesson, @comment] do |f| %>
+<%= f.input :comment %>
+<%= f.submit "Comentar", class: "btn btn-primary" %>
+<% end %></p>
+<%= link_to 'Back', :action => 'index' %>

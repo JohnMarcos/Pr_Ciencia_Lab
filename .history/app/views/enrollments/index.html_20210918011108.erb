@@ -1,0 +1,17 @@
+<h1>Mis Cursos</h1>
+<h1><%= current_user.first_name %> <%= current_user.last_name %></h1>
+<% @course_enrollments.each do |e| %>
+<ul><% cu = @courses.select { |course| course.id == e.course_id }[0].name %></ul>
+<% c = @courses.select { |course| course.id == e.course_id }[0] %>
+<h2>Curso: <%= link_to cu, course_lesson_path(:course_id => c.id, :id => c.lessons[0].id) %></h2>
+<h2>Curso: <%= link_to cu, course_enrollment_lesson_path(:course_id => c.id, :enrollment_id => c.enrollments[0].id, :id => c.lessons[0].id) %></h2>
+<p>Descripción del curso: <%= c.description %></p>
+<p>Profesor: <%= c.user.first_name %> <%= c.user.last_name %></p>
+<p>Lecciones: <%= c.lessons.count %></p>
+<p>Comentarios: <%= c.comments.count %></p>
+<% end %>
+<br/>
+<br/>
+<%= link_to "Volver a Home", root_path %>
+
+/courses/:course_id/enrollments/:enrollment_id/lessons/:id(.:format)

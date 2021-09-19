@@ -1,0 +1,8 @@
+<h1>Comenta la lección</h1>
+<br/>
+<p><%= form_for [@course, @enrollment, @lesson, @comment] do |f| %>
+<%= f.label :comment %>
+<%= f.text_field :comment %>
+<%= f.submit %>
+<% end %></p>
+<%= link_to 'Back', :action => 'index' %>

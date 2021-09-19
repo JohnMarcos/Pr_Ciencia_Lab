@@ -1,0 +1,7 @@
+<h1>Mis Cursos</h1>
+
+<h1><%= current_user.first_name %> <%= current_user.last_name %></h1>
+
+<%= current_user.enrollments.each do |c| %>
+<h2>enrollments: <%= c.course_id.course.name %></h2>
+<% end %>

@@ -1,0 +1,15 @@
+<h1>Nuestros Cursos</h1>
+
+<%= @courses.each do |c| %>
+<h2>Curso: <% c.name %></h2>
+<p>Profesor: <%= c.user.first_name %></p>
+<p>Lecciones: <%= c.lessons.count %></p>
+<p>Ultima actualización: <%= c.updated_at %></p>
+<p>Alumnos inscritos: <%= c.users.each do |u| %></p>
+<%= u.first_name %>
+<% end %>
+<%= link_to "Más detalles", course_path(c.id) %>
+<% end %>
+<br/>
+<br/>
+<%= link_to "Volver a Home", root_path %>

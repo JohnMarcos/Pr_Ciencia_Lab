@@ -1,0 +1,8 @@
+<h1>Ciencia Lab</h1>
+<p>Visite nuestros cursos</p>
+<%= link_to "Mis Cursos", course_enrollments_path(:course_id => @current_user_enrollments) %>
+<% if @current_user_enrollments.empty? %>
+<p></p>
+<% else %>
+<% link_to "Mis Cursos", course_enrollments_path(:course_id => @current_user_enrollments) %>
+<%= link_to "Cursos", courses_path %>

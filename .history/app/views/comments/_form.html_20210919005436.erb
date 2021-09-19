@@ -1,0 +1,5 @@
+<p><%= simple_form_for [@lesson, @comment] do |f| %>
+<%= f.input :comment %>
+<%= f.submit "Comentar", class: "btn btn-primary" %>
+<% end %></p>
+<%= link_to 'Volver', course_enrollment_lesson_path(@course, @enrollment, @lesson) %>
