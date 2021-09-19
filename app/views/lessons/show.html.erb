@@ -16,6 +16,8 @@
 <p>Fecha: <%= com.created_at %></p>
 <p>Comentario: <%= com.comment %></p>
 <p><% end %></p>
+<%= link_to "Comentar", new_course_enrollment_lesson_comment_path(@course, @enrollment, @lesson) %>
+<br/>
 <%= link_to "Mis Cursos", course_enrollments_path(:course_id => @course.id) %>
 <br/>
 <%= link_to "Explorar Cursos", courses_path %>
