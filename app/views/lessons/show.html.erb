@@ -21,7 +21,7 @@
     <%= link_to "Editar", edit_course_enrollment_lesson_comment_path(:course_id => @course.id, :enrollment_id => @enrollment.id, :lesson_id => @lesson.id, :comment_id => com.id ) %> || 
     <%= link_to 'Borrar', 
     course_enrollment_lesson_comment_path(@course, @enrollment, @lesson, com.id), method: :delete,
-    data: {confirm: "Estas seguro?"} %>
+    data: {confirm: "¿Estas seguro?, borraras el comentario."} %>
   <% else %>
   <% end %>
 <% end %>
