@@ -16,8 +16,12 @@
 <p>Fecha: <%= com.created_at %></p>
 <p>Comentario: <%= com.comment %></p>
 <p>Comentario id: <%= com.id %></p>
-<%= link_to "Editar", edit_course_enrollment_lesson_comment_path(:course_id => @course.id, :enrollment_id => @enrollment.id, :lesson_id => @lesson.id, :comment_id => com.id ) %> || 
-<%= link_to 'Borrar', course_enrollment_lesson_comment_path(@course, @enrollment, @lesson, com.id), method: :delete %>
+<p>Usuario id: <%= com.user_id %></p>
+  <% if com.user_id == current_user.id %>
+    <%= link_to "Editar", edit_course_enrollment_lesson_comment_path(:course_id => @course.id, :enrollment_id => @enrollment.id, :lesson_id => @lesson.id, :comment_id => com.id ) %> || 
+    <%= link_to 'Borrar', course_enrollment_lesson_comment_path(@course, @enrollment, @lesson, com.id), method: :delete %>
+  <% else %>
+  <% end %>
 <% end %>
 <br/>
 <%= link_to "Comentar", new_course_enrollment_lesson_comment_path(@course, @enrollment, @lesson) %>

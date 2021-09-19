@@ -6,6 +6,6 @@
 <% @comment.id = [] %>
 <% else %>
 <%= link_to 'Borrar', course_enrollment_lesson_comment_path(@course, @enrollment, @lesson, comment.id), method: :delete %> || 
-<% end%>
+<% end %>
 <% path_volver = course_enrollment_lesson_path(@course, @enrollment, @lesson) %>
 <%= link_to 'Volver', path_volver %>
