@@ -7,6 +7,9 @@ Rails.application.routes.draw do
     end
     resources :lessons, except: [:show]
     resources :enrollments, only: [:index, :show, :new, :create] do
+      collection do
+        get 'mis_cursos_enrrolados'
+      end
       resources :lessons do
         resources :comments
       end

@@ -11,4 +11,8 @@
 <% end %>
 <br/>
 <%= link_to "Home", root_path %> ||
-<%= link_to "Mis Cursos", course_enrollments_path(course_id: Enrollment.find_by(course_id: @current_user_enrollments.first.course_id, user_id: current_user.id).course_id) %>
+<% if @current_user_enrollments.first.nil? %>
+No tienes cursos enrrolados
+<% else %>
+<%= link_to "Mis Cursos Enrrolados", course_enrollments_path(course_id: Enrollment.find_by(course_id: @current_user_enrollments.first.course_id, user_id: current_user.id).course_id) %>
+<% end %>
