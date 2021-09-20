@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
   resources :courses do
+    collection do
+      get 'mis_cursos_creados'
+    end
     resources :lessons, except: [:show]
     resources :enrollments, only: [:index, :show, :new, :create] do
       resources :lessons do

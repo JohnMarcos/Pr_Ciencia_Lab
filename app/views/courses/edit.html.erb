@@ -1,6 +1,1 @@
-<p><%= simple_form_for @course do |f| %>
-<%= f.input :name, label: "nombre" %>
-<%= f.input :description, label: "descripción" %>
-<%= f.submit "Editar" %>
-<% end %>
-<%= link_to 'Volver', courses_path  %>
+<%= render  "form", course: @course, label_name: "nombre", label_description: "descripción", label_summit: "Editar" %>

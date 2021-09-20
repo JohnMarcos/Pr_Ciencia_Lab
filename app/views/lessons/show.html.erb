@@ -25,9 +25,6 @@
   <% else %>
   <% end %>
 <% end %>
-<br/>
-<%= link_to "Comentar", new_course_enrollment_lesson_comment_path(@course, @enrollment, @lesson) %>
-<br/>
+<p><%= link_to "Comentar", new_course_enrollment_lesson_comment_path(@course, @enrollment, @lesson) %></p>
+<%= link_to "Explorar Cursos", courses_path %> ||
 <%= link_to "Mis Cursos", course_enrollments_path(:course_id => @course.id) %>
-<br/>
-<%= link_to "Explorar Cursos", courses_path %>

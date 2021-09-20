@@ -1,14 +1,12 @@
 class EnrollmentsController < ApplicationController
+  def index
+    @enrollments = Enrollment.all
+  end
+
   def show
   end
 
   def new
-  end
-
-  def index
-    @courses = Course.all
-    @enrollments = Enrollment.all
-    @course_enrollments = current_user.enrollments
   end
 
   def create

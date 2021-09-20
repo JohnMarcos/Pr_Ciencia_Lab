@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
   def index
     @courses = Course.all
-    @current_user_enrollments = current_user.enrollments
+    @current_user_enrollments = current_user.enrollments.where(user_id: current_user.id)
   end
 
   def show
@@ -49,6 +49,10 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
     @course.destroy
     redirect_to courses_path
+  end
+
+  def mis_cursos_creados
+    @courses = Course.all.select { |course| course.user_id == current_user.id }
   end
 
   private

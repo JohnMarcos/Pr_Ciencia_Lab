@@ -1,13 +1,15 @@
 <h1>Mis Cursos</h1>
-<h1><%= current_user.first_name %> <%= current_user.last_name %></h1>
-<% @course_enrollments.each do |e| %>
-<ul><% cu = @courses.select { |course| course.id == e.course_id }[0].name %></ul>
-<% c = @courses.select { |course| course.id == e.course_id }[0] %>
-<h2>Curso: <%= link_to cu, course_enrollment_lesson_path(:course_id => c.id, :enrollment_id => c.enrollments[0].id, :id => c.lessons[0].id) %></h2>
-<p>Descripción del curso: <%= c.description %></p>
-<p>Profesor: <%= c.user.first_name %> <%= c.user.last_name %></p>
-<p>Lecciones: <%= c.lessons.count %></p>
-<p>Comentarios: <%= c.comments.count %></p>
+<% @enrollments.each do |e| %>
+  <% course_enrollment = Course.find(e.course_id) %>
+  <% enrollment_status = Enrollment.find_by(user_id: current_user.id, course_id: course_enrollment.id).nil? ? "No" : "Si" %>
+  <% user = User.find(course_enrollment.user_id) %>
+  <h2>Nombre del curso: <%= course_enrollment.name %></h2>
+  <p>Descripción del curso: <%= course_enrollment.description %></p>
+  <p>Profesor: <%= user.first_name %> <%= user.last_name %></p>
+  <p>Enrollados: <%= @enrollments.count %></p>
+  <p>Enrollado?: <%= enrollment_status %></p>
+  <p>Lecciones: <%= course_enrollment.lessons.count %></p>
+  <p>Comentarios: <%= course_enrollment.comments.count %></p>
+  <p><%= link_to "Ver curso",  course_path(course_enrollment.id) %></p>
 <% end %>
-<br/>
 <%= link_to "Home", root_path %>
