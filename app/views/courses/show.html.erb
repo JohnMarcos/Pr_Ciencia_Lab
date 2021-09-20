@@ -12,10 +12,10 @@
 <% i+=1 %>
 <%end%>
 <br/>
-  <% if @enrollment_status == "Si" %>
-    <%= a = link_to "Ir al curso", course_enrollment_lesson_path(:course_id => @course.id, :enrollment_id => @enrollment.id, :id => @firs_lesson_id) %>
-  <% else %>
-     <%= link_to "Subcribirse", course_enrollments_path(@course),  method: :post, data: {confirm: "¿Deseas subcribirte al curso?"} %>
-  <% end %>
+<% if @enrollment_status == "Si" %>
+  <%= a = link_to "Ir al curso", course_enrollment_lesson_path(:course_id => @course.id, :enrollment_id => @enrollment.id, :id => @firs_lesson_id) %>
+<% else %>
+    <%= link_to "Subcribirse", course_enrollments_path(@course),  method: :post, data: {confirm: "¡Que bien ya estás subcrito!"} %>
+<% end %>
 <br/>
 <%= link_to "Explorar Cursos", courses_path %>

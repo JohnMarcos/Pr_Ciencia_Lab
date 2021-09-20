@@ -3,9 +3,9 @@
 <%= f.submit label_summit %>
 <% end %>
 <% if @comment.id.nil?%>
-<% @comment.id = [] %>
+<% @comment.id = []  %>
 <% else %>
 <%= link_to 'Borrar', course_enrollment_lesson_comment_path(@course, @enrollment, @lesson, comment.id), method: :delete %> || 
 <% end %>
-<% path_volver = course_enrollment_lesson_path(@course, @enrollment, @lesson) %>
-<%= link_to 'Volver', path_volver %>
+<% path_volver = course_enrollment_lesson_path(@course, @enrollment, @lesson)%>
+<%= link_to 'Volver', path_volver, data: {notice: "Tu comentario fue creado."}  %>

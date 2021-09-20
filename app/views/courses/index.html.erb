@@ -7,8 +7,11 @@
 <p>Alumnos inscritos: <%= c.enrollments.count %></p>
 <p>Inscrito?: <%= c.enrollments.where(user_id: current_user.id).count > 0 ? "Si" : "No" %></p>
 <p><%= c.comments.count %> Comentarios</p>
-<%= link_to "Más detalles", course_path(c.id) %>
+<%= link_to "Ver curso", course_path(c.id) %> || 
+<%= link_to "Borrar", course_path(c.id),  method: :delete, data: {confirm: "¿Esta seguro?"} %> || 
+<%= link_to "Editar", edit_course_path(c.id) %>
 <% end %>
 <br/>
 <br/>
+<%= link_to "Crear Curso", new_course_path %>
 <p><%= link_to "Home", root_path %></p>
