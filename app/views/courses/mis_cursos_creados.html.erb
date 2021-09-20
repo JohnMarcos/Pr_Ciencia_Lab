@@ -18,5 +18,5 @@
 <% if @courses.first.nil? %>
 No tienes cursos enrrolados
 <% else %>
-<%= link_to "Mis Cursos Enrrollados", course_enrollments_path(course_id: @courses.first.id, user_id: current_user.id) %>
+<%= link_to "Mis Cursos Enrrolados", mis_cursos_enrrolados_course_enrollments_path(course_id: @enrollments_current_user_id) %>
 <% end %>

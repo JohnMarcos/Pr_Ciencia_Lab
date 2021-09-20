@@ -9,12 +9,9 @@
 <p>Alumnos inscritos: <%= course_enrollment.enrollments.count %></p>
 <p>Inscrito?: <%= Enrollment.find_by(course_id: course_enrollment.id, user_id: current_user.id).nil? ? "No" : "Si" %></p>
 <p><%= course_enrollment.comments.count %> Comentarios</p>
-<%= link_to "Ver curso", course_path(course_enrollment.id) %> || 
-<%= link_to "Borrar", course_path(course_enrollment.id),  method: :delete, data: {confirm: "¿Esta seguro?"} %> || 
-<%= link_to "Editar", edit_course_path(course_enrollment.id) %>
+<%= link_to "Ver curso", course_path(course_enrollment.id) %>
 <% end %>
 <br/>
 <br/>
-<p><%= link_to "Crear Curso", new_course_path %></p>
 <%= link_to "Home", root_path %> ||
-<%= link_to "Mis Cursos", course_enrollments_path(course_id: @enrollments_current_user_id, user_id: current_user.id) %>
+    <%= link_to "Editor de Cursos", mis_cursos_creados_courses_path %>

@@ -5,6 +5,7 @@ class CoursesController < ApplicationController
   end
 
   def show
+    @current_user_enrollments = current_user.enrollments.where(user_id: current_user.id)
     @course = Course.find(params[:id])
     @firs_lesson_id = @course.lesson_ids.first
     @enrollment = Enrollment.find_by(course_id: @course.id, user_id: current_user.id) # Primero filtra por curso, luego por usuario
@@ -53,6 +54,8 @@ class CoursesController < ApplicationController
 
   def mis_cursos_creados
     @courses = Course.all.select { |course| course.user_id == current_user.id }
+    @enrollments_current_user = Enrollment.all.select { |user| user.user_id == current_user.id }
+    @enrollments_current_user_id = @enrollments_current_user.first.id
   end
 
   private

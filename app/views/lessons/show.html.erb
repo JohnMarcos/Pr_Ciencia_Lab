@@ -27,4 +27,4 @@
 <% end %>
 <p><%= link_to "Comentar", new_course_enrollment_lesson_comment_path(@course, @enrollment, @lesson) %></p>
 <%= link_to "Explorar Cursos", courses_path %> ||
-<%= link_to "Mis Cursos", course_enrollments_path(:course_id => @course.id) %>
+<%= link_to "Mis Cursos Enrrolados", mis_cursos_enrrolados_course_enrollments_path(course_id: @current_user_enrollments.first.course_id) %>
