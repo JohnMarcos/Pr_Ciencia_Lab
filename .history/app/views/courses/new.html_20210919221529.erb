@@ -1,0 +1,6 @@
+<p><%= simple_form_for [@course] do |f| %>
+<%= f.input :name, label: "nombre" %>
+<%= f.submit %>
+<% end %>
+<% path_volver = course_enrollment_lesson_path(@course, @enrollment, @lesson)%>
+<%= link_to 'Volver', path_volver, data: {notice: "Tu comentario fue creado."}  %>

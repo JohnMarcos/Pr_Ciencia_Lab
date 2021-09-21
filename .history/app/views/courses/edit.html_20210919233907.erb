@@ -1,0 +1,7 @@
+<p><%= simple_form_for @course do |f| %>
+<%= f.input :name, label: "nombre" %>
+<%= f.input :description, label: "descripción" %>
+<%= f.submit "Editar" %>
+<% raise %>
+<% end %>
+<%= link_to 'Volver', courses_path  %>

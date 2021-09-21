@@ -1,0 +1,12 @@
+<p><%= simple_form_for [@course, @lesson] do |f| %>
+<%= f.input :name, label: label_name %>
+<%= f.input :description, label: label_description %>
+<%= f.submit label_summit %>
+<% end %>
+<% if @lesson.id.nil?%>
+<% @lesson.id = []  %>
+<% else %>
+<%= link_to 'Borrar', course_enrollment_lesson_comment_path(@course, @enrollment, @lesson, comment.id), method: :delete %> || 
+<% end %>
+
+<%= link_to 'Volver', mis_cursos_creados_courses_path %>

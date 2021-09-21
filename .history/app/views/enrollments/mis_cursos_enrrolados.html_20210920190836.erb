@@ -1,0 +1,18 @@
+<h1>Mis Cursos Enrrolados</h1>
+<% @enrollments_current_user.each do |c| %>
+<% course_enrollment_id = c.course_id%>
+<% course_enrollment = Course.all.find_by(id: course_enrollment_id)%>
+<h2>Curso: <%= course_enrollment.name %></h2>
+<p>Profesor: <%= course_enrollment.user.first_name %> <%= course_enrollment.user.last_name %></p>
+<p>Lecciones: <%= course_enrollment.lessons.count %></p>
+<p>Ultima actualización: <%= course_enrollment.updated_at %></p>
+<p>Alumnos inscritos: <%= course_enrollment.enrollments.count %></p>
+<p>Inscrito?: <%= Enrollment.find_by(course_id: course_enrollment.id, user_id: current_user.id).nil? ? "No" : "Si" %></p>
+<p><%= course_enrollment.comments.count %> Comentarios</p>
+<%= link_to "Ver curso", course_path(course_enrollment.id) %>
+<% end %>
+<br/>
+<br/>
+<%= link_to "Home", root_path %> ||
+<%= link_to "Editor de Cursos", course_enrollments_path(course_id: @enrollments_current_user_id, user_id: current_user.id) %>
+<%= link_to "Mis Cursos Enrrolados", mis_cursos_enrrolados_course_enrollments_path(course_id: @enrollments_current_user_id) %>

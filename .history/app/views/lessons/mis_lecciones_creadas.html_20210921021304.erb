@@ -1,0 +1,39 @@
+<h1>Editor de Lecciones</h1>
+<h2>Nombre del curso: <%= @course.name %></h2>
+<p>Descripción del curso: <%= @course.description %></p>
+<p>Profesor: <%= @course.user.first_name %> <%= @course.user.last_name %></p>
+<p>Lecciones: <%= @course.lessons.count %></p>
+<p>Comentarios: <%= @course.comments.count %></p>
+<p>Enrrolados: <%= @course.enrollments.count %></p>
+<p>Enrrolado: <%= @enrollment_status %></p>
+<h3>Lecciones: <% @course.lessons.each %></h3>
+<p><% @course.lessons.each_with_index do |lesson, i| %></p>
+<ul><%= 1+i %>.- <%= lesson.name %></ul>
+<% i+=1 %>
+<%end%>
+<br/>
+<% if @enrollment_status == "Si" %>
+    <% if @firs_lesson_id.nil?%>
+      <p>No hay lecciones para este curso</p>
+    <% else %>
+      <p><%= a = link_to "Ir al curso", course_enrollment_lesson_path(course_id: @course.id, enrollment_id: @enrollment.id, id: @firs_lesson_id) %></p>
+    <% end %>
+<% else %>
+    <%= link_to "Subcribirse", course_enrollments_path(@course),  method: :post, data: {confirm: "¡Que bien ya estás subcrito!"} %>
+<% end %>
+<br/>
+<% if @enrollment.nil? %>
+<p>Debes estar enrrolado y ser creador del curso para crear, borrar o editar lecciones, ¡Subcribete Arriba!</p>
+<br/>
+<%= link_to "Explorar Cursos", courses_path %> || 
+<%= link_to "Editor de Cursos", mis_cursos_creados_courses_path %>
+<% else %>
+<p><%= link_to "Crear Lección", new_course_enrollment_lesson_path(course_id: @course.id, enrollment_id: @enrollment.id) %></p>
+<br/>
+<%= link_to "Explorar Cursos", courses_path %> || 
+<%= link_to "Mis Cursos Enrrolados", mis_cursos_enrrolados_course_enrollments_path(course_id: @course.id, enrollment: @enrollment.id) %> || 
+<%= link_to "Editor de Cursos", mis_cursos_creados_courses_path %>
+<% end %>
+<br/>
+
+

@@ -1,0 +1,19 @@
+<h1>Mis Cursos Creados</h1>
+<% @courses.each do |c| %>
+<h2>Curso: <%= c.name %></h2>
+<p>Profesor: <%= c.user.first_name %> <%= c.user.last_name %></p>
+<p>Lecciones: <%= c.lessons.count %></p>
+<p>Ultima actualización: <%= c.updated_at %></p>
+<p>Alumnos inscritos: <%= c.enrollments.count %></p>
+<p>Inscrito?: <%= Enrollment.find_by(course_id: c.id, user_id: current_user.id).nil? ? "No" : "Si" %></p>
+<p><%= c.comments.count %> Comentarios</p>
+<%= link_to "Ver curso", course_path(c.id) %> || 
+<%= link_to "Borrar", course_path(c.id),  method: :delete, data: {confirm: "¿Esta seguro?"} %> || 
+<%= link_to "Editar", edit_course_path(c.id) %>
+<% end %>
+<br/>
+<br/>
+<p><%= link_to "Crear Curso", new_course_path %></p>
+<%= link_to "Home", root_path %> ||
+<%= link_to "Mis Cursos", course_enrollments_path(course_id: @courses.first.id, user_id: current_user.id) %>
+

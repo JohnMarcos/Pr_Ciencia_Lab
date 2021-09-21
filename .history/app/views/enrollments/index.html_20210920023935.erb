@@ -1,0 +1,14 @@
+<h1>Mis Cursos</h1>
+<h1><%= current_user.first_name %> <%= current_user.last_name %></h1>
+<% @enrollments.each do |e| %>
+  <% course_enrollment = Course.find(e.course_id) %>
+  <% enrollment_status = Enrollment.find(current_user.id).nil? ? "No" | "Si" %>
+  <p>Inscritos: <%= @enrollments.count %></p>
+  <p>Inscritos?: <%= enrollment_status %></p>
+  <p>Nombre del curso: <%= course_enrollment.name %></p>
+  <p>Descripción del curso: <%= course_enrollment.description %></p>
+  <p>Lecciones: <%= course_enrollment.lessons.count %></p>
+  <p>Comentarios: <%= course_enrollment.comments.count %></p>
+<% end %>
+<br/>
+<%= link_to "Home", root_path %>

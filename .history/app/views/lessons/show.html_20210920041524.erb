@@ -1,0 +1,31 @@
+<h1>Curso: <%= @course.name %></h1>
+<h2>Lección: <%= @lesson.name %></h2>
+<p>Profesor: <%= @course.user.first_name %> <%= @course.user.last_name %></p>
+<p>Comentarios: <%= @course.comments.count %></p>
+<p>Lección: <%= @lesson.description %></p>
+<h2>Lecciones</h2>
+<ul>
+<% @course.lessons.each_with_index do |lesson, i| %>
+<p><%=1+i%>.- <%= link_to lesson.name, course_enrollment_lesson_path(:course_id => @course, :enrollment_id => @course.enrollments[0].id, :id => lesson.id) %>(<%= lesson.comments.count %> Comentarios)</p>
+<% i+=1 %>
+<% end %>
+</ul>
+<h2>Comentarios</h2>
+<p><% @lesson.comments.each do |com| %></p>
+<p>Usuario: <%= com.user.first_name %> <%= com.user.last_name %></p>
+<p>Fecha: <%= com.created_at %></p>
+<p>Comentario: <%= com.comment %></p>
+<p>Comentario id: <%= com.id %></p>
+<p>Usuario id: <%= com.user_id %></p>
+  <% if com.user_id == current_user.id %>
+    <%= link_to "Editar", edit_course_enrollment_lesson_comment_path(:course_id => @course.id, :enrollment_id => @enrollment.id, :lesson_id => @lesson.id, :comment_id => com.id ) %> || 
+    <%= link_to 'Borrar', 
+    course_enrollment_lesson_comment_path(@course, @enrollment, @lesson, com.id), method: :delete,
+    data: {confirm: "¿Estas seguro?, borraras el comentario."} %>
+  <% else %>
+  <% end %>
+<% end %>
+<br/>
+<p><%= link_to "Comentar", new_course_enrollment_lesson_comment_path(@course, @enrollment, @lesson) %></p>
+<%= link_to "Explorar Cursos", courses_path %> ||
+<%= link_to "Mis Cursos", course_enrollments_path(:course_id => @course.id) %>

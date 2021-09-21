@@ -1,0 +1,8 @@
+<h1>Mis Cursos</h1>
+<h1><%= current_user.first_name %> <%= current_user.last_name %></h1>
+<% @enrollments.each do |e| %>
+  <% course_enrollment = Course.find(e.course_id) %>
+  <% enrollment_status = Enrollment.find(current_user.id).nil? ? "No" | "Si" %>
+<% end %>
+<br/>
+<%= link_to "Home", root_path %>

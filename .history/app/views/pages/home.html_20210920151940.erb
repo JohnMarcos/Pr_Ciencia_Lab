@@ -1,0 +1,9 @@
+<h1>Ciencia Lab</h1>
+<p>Visite nuestros cursos</p>
+<% if current_user.nil? %>
+<%= link_to "Explorar Cursos", courses_path %>
+<% else %>
+<%= link_to "Explorar Cursos", courses_path %> ||
+<%= link_to "Mis Cursos", course_enrollment_path(:course_id => @current_user_enrollments) %> || 
+<%= link_to "Mis Cursos Creados", mis_cursos_creados_courses_path %>
+<% end %>

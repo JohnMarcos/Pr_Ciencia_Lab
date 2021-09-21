@@ -1,0 +1,6 @@
+<p><%= simple_form_for [@course, @lesson] do |f| %>
+<%= f.input :name, label: label_name %>
+<%= f.input :description, label: label_description %>
+<%= f.submit label_summit %>
+<% end %>
+<%= link_to 'Volver', mis_cursos_creados_courses_path %>

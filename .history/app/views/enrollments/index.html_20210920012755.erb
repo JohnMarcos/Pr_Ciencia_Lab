@@ -1,0 +1,11 @@
+<h1>Mis Cursos</h1>
+<h1><%= current_user.first_name %> <%= current_user.last_name %></h1>
+<% @enrollments.each do |e| %>
+<p>Nombre del curso: <%= e.user_id.user.first_name %>
+<p>Descripción del curso: <%= e.user_id.user.first_name %></p>
+<p>Profesor: <%= c.user.first_name %> <%= c.user.last_name %></p>
+<p>Lecciones: <%= c.lessons.count %></p>
+<p>Comentarios: <%= c.comments.count %></p>
+<% end %>
+<br/>
+<%= link_to "Home", root_path %>

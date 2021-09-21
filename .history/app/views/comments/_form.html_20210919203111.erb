@@ -1,0 +1,6 @@
+<p><%= simple_form_for ([@course, @enrollment, @lesson, comment]) do |f| %>
+<%= f.input :comment, label: label_input_comment %>
+<%= f.submit label_summit %>
+<% end %>
+<% path_volver = course_enrollment_lesson_path(@course, @enrollment, @lesson) %>
+<%= link_to 'Volver', path_volver %>

@@ -1,0 +1,14 @@
+<h1>Editor de Lecciones</h1>
+<h2>Nombre del curso: <%= @course.name %></h2>
+<p><% @course.lessons.each_with_index do |lesson, i| %></p>
+<ul><%= 1+i %>.- <%= lesson.name %></ul>
+<% i+=1 %>
+<%= lesson.description %>
+<%end%>
+<br/>
+<%= link_to "Ir al curso", course_enrollment_lesson_path(course_id: @course.id, enrollment_id: @enrollment.id, lesson_id: @firs_lesson_id) %> || 
+<%= link_to "Crear Lección", new_course_enrollment_lesson_path(course_id: @course.id, enrollment_id: @enrollment.id) %>
+<br/>
+<%= link_to "Explorar Cursos", courses_path %> || 
+<%= link_to "Mis Cursos Enrrolados", mis_cursos_enrrolados_course_enrollments_path(course_id: @course.id, enrollment_id: @enrollment.id) %> || 
+<%= link_to "Editor de Cursos", mis_cursos_creados_courses_path %>

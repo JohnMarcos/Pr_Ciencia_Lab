@@ -1,0 +1,31 @@
+<h1>Editor de Lecciones</h1>
+<h2>Nombre del curso: <%= @course.name %></h2>
+<% enrollment_course = Enrollment.find_by(course_id: @course.id, user_id: current_user.id) %>
+<p>Descripción del curso: <%= @course.description %></p>
+<p>Profesor: <%= @course.user.first_name %> <%= @course.user.last_name %></p>
+<p>Lecciones: <%= @course.lessons.count %></p>
+<p>Comentarios: <%= @course.comments.count %></p>
+<p>Enrrolados: <%= @course.enrollments.count %></p>
+<p>Enrrolado: <%= enrollment_course.nil? ? "No" : "Si" %></p>
+<h3>Lecciones: <% @course.lessons.each %></h3>
+<p><% @course.lessons.each_with_index do |lesson, i| %></p>
+<ul><%= 1+i %>.- <%= lesson.name %></ul>
+<% i+=1 %>
+<%= link_to "Editar Lección", edit_course_enrollment_lesson_path(course_id: @course.id, enrollment_id: @enrollment.id, id: lesson.id ) %> ||
+<%= link_to "Eliminar Lección", course_enrollment_lesson_path(course_id: @course.id, enrollment_id: @enrollment.id, id: lesson.id), method: :delete, data: { confirm: '¿Estas seguro?, elimininarás la lección.' } %>
+<%end%>
+<br/>
+<br/>
+<p><%= link_to "Crear Lección", new_course_enrollment_lesson_path(course_id: @course.id, enrollment_id: @enrollment.id) %></p>
+<br/>
+<% if @course.lessons.first.nil? %>
+No hay lecciones || 
+<%= link_to "Explorar Cursos", courses_path %> || 
+<%= link_to "Mis Cursos Enrrolados", mis_cursos_enrrolados_course_enrollments_path(course_id: @course.id, enrollment_id: @enrollment.id) %> || 
+<%= link_to "Editor de Cursos", mis_cursos_creados_courses_path %>
+<% else %>
+<%= link_to "Ir al curso", course_enrollment_lesson_path(course_id: @course.id, enrollment_id: @enrollment.id, id: @course.lessons.first.id) %> || 
+<%= link_to "Explorar Cursos", courses_path %> || 
+<%= link_to "Mis Cursos Enrrolados", mis_cursos_enrrolados_course_enrollments_path(course_id: @course.id, enrollment_id: @enrollment.id) %> || 
+<%= link_to "Editor de Cursos", mis_cursos_creados_courses_path %>
+<% end %>
