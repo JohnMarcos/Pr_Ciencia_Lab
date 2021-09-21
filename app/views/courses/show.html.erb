@@ -19,9 +19,13 @@
       <p><%= a = link_to "Ir al curso", course_enrollment_lesson_path(course_id: @course.id, enrollment_id: @enrollment.id, id: @firs_lesson_id) %></p>
     <% end %>
 <% else %>
-    <%= link_to "Subcribirse", course_enrollments_path(@course),  method: :post, data: {confirm: "¡Que bien ya estás subcrito!"} %>
+    <p><%= link_to "Subcribirse", course_enrollments_path(@course),  method: :post, data: {confirm: "¡Estás a un paso de enrrolarte!, por favor confirma."} %></p>
 <% end %>
 <br/>
 <%= link_to "Home", root_path %> || 
 <%= link_to "Explorar Cursos", courses_path %> || 
+<% if @enrollment.nil? %>
+No tienes cursos Enrrolados
+<% else %>
 <%= link_to "Mis Cursos Enrrolados", mis_cursos_enrrolados_course_enrollments_path(course_id: @course.id, enrollment: @enrollment.id) %>
+<% end %>
