@@ -5,7 +5,11 @@
 <p>Lecciones: <%= c.lessons.count %></p>
 <p>Ultima actualización: <%= c.updated_at %></p>
 <p>Alumnos inscritos: <%= c.enrollments.count %></p>
+<%if current_user.nil?%>
+<%current_user = []%>
+<%else%>
 <p>Inscrito?: <%= Enrollment.find_by(course_id: c.id, user_id: current_user.id).nil? ? "No" : "Si" %></p>
+<% end %>
 <p><%= c.comments.count %> Comentarios</p>
 <p><%= link_to "Ver curso", course_path(c.id) %></p>
 <% end %>
