@@ -4,6 +4,7 @@ class Course < ApplicationRecord
   belongs_to :user
   has_many :users, through: :enrollments
   has_many :comments, through: :lessons
+  has_one_attached :image
 
   validates :name, presence: true
 end

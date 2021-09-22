@@ -1,5 +1,6 @@
 <h1>Nuestros Cursos</h1>
 <% @courses.each do |c| %>
+<%= cl_image_tag c.image.key, height: 300, width: 400, crop: :fill %>
 <h2>Curso: <%= c.name %></h2>
 <p>Profesor: <%= c.user.first_name %> <%= c.user.last_name %></p>
 <p>Lecciones: <%= c.lessons.count %></p>

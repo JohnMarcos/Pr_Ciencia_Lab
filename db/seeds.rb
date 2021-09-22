@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require "open-uri"
 
 puts 'Cleaning database...'
 
@@ -29,11 +30,14 @@ end
 puts 'Creando 20 courses...'
 
 20.times do
-  Course.create!(
+  file = URI.open('https://res.cloudinary.com/john-marcos/image/upload/v1632297871/sample.jpg')
+  course = Course.create!(
     name: Faker::Educator.course_name,
     description: Faker::Educator.subject,
     user_id: User.all.select { |user| user.profile == "teacher" }.sample.id
   )
+course.image.attach(io: file, filename: 'sample.jpg', content_type: 'image/jpg')
+course.save
 end
 
 puts 'Creando 200 lessons...'

@@ -1,5 +1,6 @@
 <h1>Contenido del Curso</h1>
 <h2>Nombre del curso: <%= @course.name %></h2>
+<%= cl_image_tag @course.image.key, height: 300, width: 400, crop: :fill %>
 <p>Descripción del curso: <%= @course.description %></p>
 <p>Profesor: <%= @course.user.first_name %> <%= @course.user.last_name %></p>
 <p>Lecciones: <%= @course.lessons.count %></p>
