@@ -1,3 +1,4 @@
+<div class="container p-3">
 <h1>Nuestros Cursos</h1>
 <% @courses.each do |c| %>
 <%= cl_image_tag c.image.key, height: 300, width: 400, crop: :fill %>
@@ -17,3 +18,4 @@ No tienes cursos enrrolados
 <% else %>
 <%= link_to "Mis Cursos Enrrolados", mis_cursos_enrrolados_course_enrollments_path(course_id: @current_user_enrollments.first.course_id) %>
 <% end %>
+</div>

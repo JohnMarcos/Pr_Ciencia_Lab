@@ -1,3 +1,4 @@
+<div class="container p-3">
 <h1>Curso: <%= @course.name %></h1>
 <h2>Lección: <%= @lesson.name %></h2>
 <p>Profesor: <%= @course.user.first_name %> <%= @course.user.last_name %></p>
@@ -29,3 +30,4 @@
 <p><%= link_to "Comentar", new_course_enrollment_lesson_comment_path(@course, @enrollment, @lesson) %></p>
 <%= link_to "Explorar Cursos", courses_path %> ||
 <%= link_to "Mis Cursos Enrrolados", mis_cursos_enrrolados_course_enrollments_path(course_id: @current_user_enrollments.first.course_id) %>
+</div>
