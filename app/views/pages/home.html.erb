@@ -3,7 +3,7 @@
 <% if current_user.nil? %>
   <%= link_to "Explorar Cursos", courses_path %>
 <% else %>
-  <%= link_to "Explorar Cursos", courses_path %> ||
+  <%= link_to "Explorar Cursos", courses_path %>
   <% if @current_user_enrollments.first.nil? %>
   No tienes cursos enrrolados ||
     <%= link_to "Editor de Cursos", mis_cursos_creados_courses_path %>
