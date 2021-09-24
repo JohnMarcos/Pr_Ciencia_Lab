@@ -10,6 +10,6 @@ class PagesController < ApplicationController
     end
   end
 
-def bootstrap
-end
+  def bootstrap
+  end
 end
