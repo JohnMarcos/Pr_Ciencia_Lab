@@ -9,4 +9,7 @@ class PagesController < ApplicationController
       @current_user_enrollments = current_user.enrollments.where(user_id: current_user.id)
     end
   end
+
+def bootstrap
+end
 end

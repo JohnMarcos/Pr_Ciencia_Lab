@@ -1,21 +1,28 @@
-<div class="container p-3">
-<h1>Nuestros Cursos</h1>
-<% @courses.each do |c| %>
-<%= cl_image_tag c.image.key, height: 300, width: 400, crop: :fill %>
-<h2>Curso: <%= c.name %></h2>
-<p>Profesor: <%= c.user.first_name %> <%= c.user.last_name %></p>
-<p>Lecciones: <%= c.lessons.count %></p>
-<p>Ultima actualización: <%= c.updated_at %></p>
-<p>Alumnos inscritos: <%= c.enrollments.count %></p>
-<p>Inscrito?: <%= Enrollment.find_by(course_id: c.id, user_id: current_user.id).nil? ? "No" : "Si" %></p>
-<p><%= c.comments.count %> Comentarios</p>
-<p><%= link_to "Ver curso", course_path(c.id) %></p>
-<% end %>
-<br/>
-<%= link_to "Home", root_path %> ||
-<% if @current_user_enrollments.first.nil? %>
-No tienes cursos enrrolados
-<% else %>
-<%= link_to "Mis Cursos Enrrolados", mis_cursos_enrrolados_course_enrollments_path(course_id: @current_user_enrollments.first.course_id) %>
-<% end %>
+<div class="container">
+	<h1 class="title">Cursos</h1>
 </div>
+<div class="container">
+	<div class="row row-cols-1 row-cols-sm-3 gap-3">
+		<% @courses.each do |c| %>
+			<div class="col p-2">
+				<div class="card p-2 radius" style="width: 18rem">
+					<%= cl_image_tag c.image.key, class: "card-img-top rounded", alt: "Responsive image" %>
+					<div class="card-body">
+						<h5 class="card-title udlite-heading-md"><%= c.name %></h5>
+						<p class ="udlite-text-xs">Profesor: <%= c.user.first_name %> <%= c.user.last_name %></p>
+						<div class="text-right">
+								<button type="button" class="btn btn-success"><%= link_to "Ver curso", course_path(c.id) %></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		<% end %>
+  </div>
+</div>
+				<br/>
+				<%= link_to "Home", root_path %> ||
+				<% if @current_user_enrollments.first.nil? %>
+				No tienes cursos enrrolados
+				<% else %>
+				<%= link_to "Mis Cursos Enrrolados", mis_cursos_enrrolados_course_enrollments_path(course_id: @current_user_enrollments.first.course_id) %>
+				<% end %>
