@@ -1,3 +1,4 @@
+<div class="container p-3">
 <h1>Mis Cursos Enrrolados</h1>
 <% @enrollments_current_user.each do |c| %>
 <% course_enrollment_id = c.course_id%>
@@ -16,3 +17,4 @@
 <br/>
 <%= link_to "Home", root_path %> || 
 <%= link_to "Explorar Cursos", courses_path %>
+</div>

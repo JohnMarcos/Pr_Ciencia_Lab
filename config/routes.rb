@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
+
+  get 'bootstrap', to: 'pages#bootstrap',  as: 'bootstrap'
+
   resources :courses do
     collection do
       get 'mis_cursos_creados'

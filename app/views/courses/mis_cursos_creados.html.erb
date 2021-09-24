@@ -1,7 +1,8 @@
+<div class="container p-3">
 <h1>Editor de Cursos</h1>
 <p>Apreciado profesor, bienvenido al editor de cursos.</p>
 <% @courses.each do |c| %>
-<%= cl_image_tag c.image.key, height: 300, width: 400, crop: :fill %>
+<p><%= cl_image_tag c.image.key, height: 300, width: 400, crop: :fill %></p>
 <% enrollment_course = Enrollment.find_by(course_id: c.id, user_id: current_user.id) %>
 <h2>Curso: <%= c.name %></h2>
 <p>Profesor: <%= c.user.first_name %> <%= c.user.last_name %></p>
@@ -33,3 +34,4 @@ No hay cursos creados
 <% else %>
 <%= link_to "Mis Cursos Enrrolados", mis_cursos_enrrolados_course_enrollments_path(course_id: @enrollments_current_user.first.id) %>
 <% end %>
+</div>
