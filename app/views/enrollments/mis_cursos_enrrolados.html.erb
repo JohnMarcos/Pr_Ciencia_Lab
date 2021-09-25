@@ -1,20 +1,26 @@
-<div class="container p-3">
-<h1>Mis Cursos Enrrolados</h1>
-<% @enrollments_current_user.each do |c| %>
-<% course_enrollment_id = c.course_id%>
-<% course_enrollment = Course.all.find_by(id: course_enrollment_id)%>
-<%= cl_image_tag course_enrollment.image.key, height: 300, width: 400, crop: :fill %>
-<h2>Curso: <%= course_enrollment.name %></h2>
-<p>Profesor: <%= course_enrollment.user.first_name %> <%= course_enrollment.user.last_name %></p>
-<p>Lecciones: <%= course_enrollment.lessons.count %></p>
-<p>Ultima actualización: <%= course_enrollment.updated_at %></p>
-<p>Alumnos inscritos: <%= course_enrollment.enrollments.count %></p>
-<p>Inscrito?: <%= Enrollment.find_by(course_id: course_enrollment.id, user_id: current_user.id).nil? ? "No" : "Si" %></p>
-<p><%= course_enrollment.comments.count %> Comentarios</p>
-<p><%= link_to "Ver curso", course_path(course_enrollment.id) %></p>
-<% end %>
-<br/>
-<br/>
-<%= link_to "Home", root_path %> || 
-<%= link_to "Explorar Cursos", courses_path %>
+<div class="container">
+	<h1 class="title mt-5 text-success font-weight-bold cl-text-shadow">Mis Cursos Enrrolados</h1>
+	<div class="container">
+		<div class="row row g-0 row-cols-3 justify-content-around">
+			<% @enrollments_current_user.each do |c| %>
+			<% course_enrollment_id = c.course_id%>
+			<% course_enrollment = Course.all.find_by(id: course_enrollment_id)%>
+				<div class="col-12 col-md-6 col-lg-4">
+					<div class="card rounded mt-3">
+						<%= cl_image_tag(course_enrollment.image.key, class: "card-img-top rounded") %>
+							<div class="card-body">
+								<h5 class="card-title"><%= course_enrollment.name %></h5>
+								<h6 class="text-muted">Profesor: <%= course_enrollment.user.first_name %> <%= course_enrollment.user.last_name %></h6>
+									<div class="text-right">
+										<button class="btn btn-success" role="butto"><%= link_to "Ver Curso", course_path(course_enrollment.id), class: "text-white" %></button>
+									</div>
+							</div>
+						</div> 
+					</div>
+				<% end %>
+	    </div>
+	</div>
+		<br/>
+	<%= link_to "Home", root_path %> || 
+	<%= link_to "Explorar Cursos", courses_path %>
 </div>
