@@ -1,38 +1,39 @@
-<h2>Editar Perfil <% resource_name.to_s.humanize %></h2>
-
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :email, label: "correo electrónico", required: true, autofocus: true %>
-    <%= f.input :first_name, label: "nombre", required: true, autofocus: true %>
-    <%= f.input :last_name, label: "apellido", required: true, autofocus: true %>
-    <%= f.input :profile, as: :radio_buttons, collection: [['estudiante', 'student'], ['profesor', 'teacher']], label: "¿Eres estudiante o profesor?", required: true, autofocus: true %>
-
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Actualmente esperando confirmación para: <%= resource.unconfirmed_email %></p>
-    <% end %>
-
-    <%= f.input :password, label: "contraseña",
-                hint: "déjelo en blanco si no quiere cambiarlo",
-                required: false,
-                input_html: { autocomplete: "Nueva contraseña" } %>
-    <%= f.input :password_confirmation, label: "confirmar contraseña",
-                required: false,
-                input_html: { autocomplete: "Nueva contraseña" } %>
-    <%= f.input :current_password, label: "contraseña actual",
-                hint: "necesitamos su contraseña actual para confirmar sus cambios",
-                required: true,
-                input_html: { autocomplete: "Contraseña actual" } %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Actualizar" %>
-  </div>
-<% end %>
-
-<h3>Cancelar mi cuenta</h3>
-
-<p>¿Infeliz? <%= link_to "Cancelar mi cuenta", registration_path(resource_name), data: { confirm: "Estas seguro" }, method: :delete %></p>
-
-<%= link_to "Volver", :back %>
+<div class="container">
+  <div class="row justify-content-around">
+    <div class="col-12 col-md-6">
+      <h1 class="title mt-5 text-success font-weight-bold cl-text-shadow">Editar Perfil <% resource_name.to_s.humanize %></h1>
+        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+          <%= f.error_notification %>
+            <div class="form-inputs">
+              <%= f.input :email, label: "correo electrónico", required: true, autofocus: true %>
+              <%= f.input :first_name, label: "nombre", required: true, autofocus: true %>
+              <%= f.input :last_name, label: "apellido", required: true, autofocus: true %>
+              <%= f.input :profile, as: :radio_buttons, collection: [['estudiante', 'student'], ['profesor', 'teacher']], label: "¿Eres estudiante o profesor?", required: true, autofocus: true %>
+              <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                <p>Actualmente esperando confirmación para: <%= resource.unconfirmed_email %></p>
+              <% end %>
+              <%= f.input :password, label: "contraseña",
+                          hint: "déjelo en blanco si no quiere cambiarlo",
+                          required: false,
+                          input_html: { autocomplete: "Nueva contraseña" } %>
+              <%= f.input :password_confirmation, label: "confirmar contraseña",
+                          required: false,
+                          input_html: { autocomplete: "Nueva contraseña" } %>
+              <%= f.input :current_password, label: "contraseña actual",
+                          hint: "necesitamos su contraseña actual para confirmar sus cambios",
+                          required: true,
+                          input_html: { autocomplete: "Contraseña actual" } %>
+            </div>
+            <div class="form-actions text-right border-bottom">
+              <button class="btn btn-success mb-3" role="butto"><%= f.button :submit, "Actualizar", class: "text-white"  %></button>
+            </div>
+        <% end %>
+    </div>
+    <div class="col-12 col-md-6 mb-3">
+      <h1 class="title mt-5 text-success font-weight-bold cl-text-shadow">Cancelar mi cuenta</h1>
+      <p>¿Infeliz? <%= link_to "Cancelar mi cuenta", registration_path(resource_name), data: { confirm: "Estas seguro" }, method: :delete %></p>
+      <div class="text-right">
+        <button class="btn btn-secondary mb-3" role="butto"><%= link_to "Volver", :back, class: "text-white" %></button>
+      </div>
+    </div>
+</div>
