@@ -1,33 +1,42 @@
-<div class="container p-3">
-<h1>Editor de Lecciones</h1>
-<h2>Nombre del curso: <%= @course.name %></h2>
-<% enrollment_course = Enrollment.find_by(course_id: @course.id, user_id: current_user.id) %>
-<p>Descripción del curso: <%= @course.description %></p>
-<p>Profesor: <%= @course.user.first_name %> <%= @course.user.last_name %></p>
-<p>Lecciones: <%= @course.lessons.count %></p>
-<p>Comentarios: <%= @course.comments.count %></p>
-<p>Enrrolados: <%= @course.enrollments.count %></p>
-<p>Enrrolado: <%= enrollment_course.nil? ? "No" : "Si" %></p>
-<h3>Lecciones: <% @course.lessons.each %></h3>
-<p><% @course.lessons.each_with_index do |lesson, i| %></p>
-<ul><%= 1+i %>.- <%= lesson.name %></ul>
-<% i+=1 %>
-<%= link_to "Editar Lección", edit_course_enrollment_lesson_path(course_id: @course.id, enrollment_id: @enrollment.id, id: lesson.id ) %> ||
-<%= link_to "Eliminar Lección", course_enrollment_lesson_path(course_id: @course.id, enrollment_id: @enrollment.id, id: lesson.id), method: :delete, data: { confirm: '¿Estas seguro?, elimininarás la lección.' } %>
-<%end%>
-<br/>
-<br/>
-<p><%= link_to "Crear Lección", new_course_enrollment_lesson_path(course_id: @course.id, enrollment_id: @enrollment.id) %></p>
-<br/>
-<% if @course.lessons.first.nil? %>
-No hay lecciones || 
-<%= link_to "Explorar Cursos", courses_path %> || 
-<%= link_to "Mis Cursos Enrrolados", mis_cursos_enrrolados_course_enrollments_path(course_id: @course.id, enrollment_id: @enrollment.id) %> || 
-<%= link_to "Editor de Cursos", mis_cursos_creados_courses_path %>
-<% else %>
-<%= link_to "Ir al curso", course_enrollment_lesson_path(course_id: @course.id, enrollment_id: @enrollment.id, id: @course.lessons.first.id) %> || 
-<%= link_to "Explorar Cursos", courses_path %> || 
-<%= link_to "Mis Cursos Enrrolados", mis_cursos_enrrolados_course_enrollments_path(course_id: @course.id, enrollment_id: @enrollment.id) %> || 
-<%= link_to "Editor de Cursos", mis_cursos_creados_courses_path %>
-<% end %>
+<div class="container mb-4">
+ <h1 class="title mt-5 text-success font-weight-bold cl-text-shadow">Editor de Lecciones</h1>
+   <div class="row justify-content-around border-bottom mb-3">
+    <div class="col-12 col-md-8">
+      <div class="card mb-3 rouded">
+        <div class="card-body">
+            <h4 class="card-title m-0"><%= @course.name %></h4>
+          	<p class="card-text m-0 pl-1"><%= @course.description %></p>
+            <% enrollment_course = Enrollment.find_by(course_id: @course.id, user_id: current_user.id) %>
+            <p><% @course.lessons.each_with_index do |lesson, i| %></p>
+            <ul class="text-warning"><%= 1+i %>.- <%= lesson.name %></ul>
+            <% i+=1 %>
+            <%= link_to "Editar Lección", edit_course_enrollment_lesson_path(course_id: @course.id, enrollment_id: @enrollment.id, id: lesson.id ) %> ||
+            <%= link_to "Eliminar Lección", course_enrollment_lesson_path(course_id: @course.id, enrollment_id: @enrollment.id, id: lesson.id), method: :delete, data: { confirm: '¿Estas seguro?, elimininarás la lección.' } %>
+            <%end%>
+        </div>
+			</div>
+		</div>
+		<div class="col-12 col-md-4 mb-4">
+      <div class="card border rounded">
+        <%= cl_image_tag(@course.image.key, class: "card-img-top rounded") %>
+          <div class="card-body">
+						<h5 class="card-title mb-1">Profesor: <%= @course.user.first_name %> <%= @course.user.last_name %></h5>
+						<h6 class="card-title text-muted m-0 ml-1">Enrrolados: <%= @course.enrollments.count %></h6>
+						<h6 class="card-title text-muted m-0 ml-1">Lecciones: <%= @course.lessons.count %></h6>
+						<h6 class="card-title text-muted m-0 ml-1 mb-3">Comentarios: <%= @course.comments.count %></h6>
+							<div class="text-right">
+							<% if @course.lessons.first.nil? %>
+									<p>No hay lecciones para este curso</p>	
+								<% else %>
+									<button class="btn btn-success mr-2" role="buttom"><%= link_to "Ir al curso", course_enrollment_lesson_path(course_id: @course.id, enrollment_id: @enrollment.id, id: @course.lessons.first.id), class: "text-white" %>
+								<% end %>
+							</div>
+          </div>
+      </div>
+    </div>
+  </div>
+	<div class= "text-right">
+		<button class="btn btn-secondary" role="buttom"><%= link_to "Volver", mis_cursos_creados_courses_path, class: "text-white" %></button>
+		<button class="btn btn-success btn-right" role="buttom"><%= link_to "Crear Lección", new_course_enrollment_lesson_path(course_id: @course.id, enrollment_id: @enrollment.id), class: "text-white" %></buttom>
+	</div>
 </div>

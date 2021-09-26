@@ -1,8 +1,10 @@
-<div class="container p-3">
-<p><%= simple_form_for [@course, @lesson] do |f| %>
-<%= f.input :name, label: label_name %>
-<%= f.input :description, label: label_description %>
-<%= f.submit label_summit %>
-<% end %>
-<%= link_to 'Volver', mis_cursos_creados_courses_path %>
+<div class="container">
+	<p><%= simple_form_for [@course, @lesson] do |f| %>
+	<%= f.input :name, label: label_name %>
+	<%= f.input :description, label: label_description %>
+	<button class="btn btn-success mb-3" role="buttom"><%= f.button :submit, label_summit, class: "text-white" %></button>
+	<% end %>
+  <div class="mt-3">
+    <button class="btn btn-secondary" role="buttom"><%= link_to 'Volver', :back, class: "text-white" %></button>
+  </div>
 </div>

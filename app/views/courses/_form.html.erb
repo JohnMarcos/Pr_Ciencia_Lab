@@ -3,7 +3,9 @@
 <%= f.input :name, label: label_name %>
 <%= f.input :description, label: label_description %>
 <%= f.input :image, label: label_image, as: :file %>
-<%= f.submit label_summit %>
+<button class="btn btn-success mt-3 mb-3" role="buttom"><%= f.button :submit, label_summit, class: "text-white" %></button>
 <% end %>
-<%= link_to 'Volver', mis_cursos_creados_courses_path  %>
+ <div class="mt-3">
+<button class="btn btn-secondary" role="buttom"><%= link_to 'Volver', mis_cursos_creados_courses_path, class: "text-white" %></button>
+</div>
 </div>
