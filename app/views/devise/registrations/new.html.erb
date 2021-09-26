@@ -1,40 +1,38 @@
-<div class="conteiner">
-<h2>Registrarse</h2>
-
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
-  <div class="form-inputs">
-    <%= f.input :email, label: "correo electrónico",
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" }%>
-    <%= f.input :first_name,
-                label: "nombre",
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "first_name" }%>
-    <%= f.input :last_name,
-                label: "apellido",
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "last_name" }%>
-    <%= f.input :profile, as: :radio_buttons, collection: [['estudiante', 'student'], ['profesor', 'teacher']],
-                label: "¿Eres estudiante o profesor?",
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "profile" }%>
-    <%= f.input :password, label: "contraseña",
-                required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation, label: "confirmar contraseña",
-                required: true,
-                input_html: { autocomplete: "new-password" } %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Inscribirse" %>
-  </div>
-<% end %>
+<div class="container">
+  <h1 class="title mt-5 text-success font-weight-bold cl-text-shadow">Registrarse</h1>
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= f.error_notification %>
+    <div class="form-inputs">
+      <%= f.input :email, label: "correo electrónico",
+                  required: true,
+                  autofocus: true,
+                  input_html: { autocomplete: "email" }%>
+      <%= f.input :first_name,
+                  label: "nombre",
+                  required: true,
+                  autofocus: true,
+                  input_html: { autocomplete: "first_name" }%>
+      <%= f.input :last_name,
+                  label: "apellido",
+                  required: true,
+                  autofocus: true,
+                  input_html: { autocomplete: "last_name" }%>
+      <%= f.input :profile, as: :radio_buttons, collection: [['estudiante', 'student'], ['profesor', 'teacher']],
+                  label: "¿Eres estudiante o profesor?",
+                  required: true,
+                  autofocus: true,
+                  input_html: { autocomplete: "profile" }%>
+      <%= f.input :password, label: "contraseña",
+                  required: true,
+                  hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                  input_html: { autocomplete: "new-password" } %>
+      <%= f.input :password_confirmation, label: "confirmar contraseña",
+                  required: true,
+                  input_html: { autocomplete: "new-password" } %>
+    </div>
+    <div class="form-actions">
+          <button class="btn btn-success mb-3" role="buttom"><%= f.button :submit, "Inscribirse", class: "text-white" %></button>
+    </div>
+      <% end %>
+  <%= link_to "Iniciar Sessión", user_session_path %>
 </div>
-<%= render "devise/shared/links" %>
