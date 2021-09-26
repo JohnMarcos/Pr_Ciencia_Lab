@@ -1,34 +1,49 @@
-<div class="container p-3">
-<h1>Contenido del Curso</h1>
-<h2>Nombre del curso: <%= @course.name %></h2>
-<%= cl_image_tag @course.image.key, height: 300, width: 400, crop: :fill %>
-<p>Descripción del curso: <%= @course.description %></p>
-<p>Profesor: <%= @course.user.first_name %> <%= @course.user.last_name %></p>
-<p>Lecciones: <%= @course.lessons.count %></p>
-<p>Comentarios: <%= @course.comments.count %></p>
-<p>Enrrolados: <%= @course.enrollments.count %></p>
-<p>Enrrolado: <%= @enrollment_status %></p>
-<h3>Lecciones: <% @course.lessons.each %></h3>
-<p><% @course.lessons.each_with_index do |lesson, i| %></p>
-<ul><%= 1+i %>.- <%= lesson.name %></ul>
-<% i+=1 %>
-<%end%>
-<br/>
-<% if @enrollment_status == "Si" %>
-    <% if @firs_lesson_id.nil?%>
-      <p>No hay lecciones para este curso</p>
-    <% else %>
-      <p><%= a = link_to "Ir al curso", course_enrollment_lesson_path(course_id: @course.id, enrollment_id: @enrollment.id, id: @firs_lesson_id) %></p>
-    <% end %>
-<% else %>
-    <p><%= link_to "Subcribirse", course_enrollments_path(@course),  method: :post, data: {confirm: "¡Estás a un paso de enrrolarte!, por favor confirma."} %></p>
-<% end %>
-<br/>
-<%= link_to "Home", root_path %> || 
-<%= link_to "Explorar Cursos", courses_path %> || 
-<% if @enrollment.nil? %>
-No tienes cursos Enrrolados
-<% else %>
-<%= link_to "Mis Cursos Enrrolados", mis_cursos_enrrolados_course_enrollments_path(course_id: @course.id, enrollment: @enrollment.id) %>
-<% end %>
+<div class="container">
+  <div class="row justify-content-around">
+    <div class="col-12 col-md-8">
+      <div class="card mt-3 p-2 rouded border-0">
+        <div class="card-body">
+          <div class="border p-3">
+          <h4 class="card-title"><%= @course.name %></h4>
+          <p class="card-text"><%= @course.description %></p>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="card mt-3 rounded">
+                <div class="card-body">
+                  <h3>Lecciones: <% @course.lessons.each %></h3>
+                  <p><% @course.lessons.each_with_index do |lesson, i|%></p>
+                  <ul class="text-warning"><%= 1+i %>.- <%= lesson.name %></ul>
+                  <% i+=1 %>
+                  <%end%>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-4 mb-3">
+      <div class="card mt-5 rounded">
+        <%= cl_image_tag(@course.image.key, class: "card-img-top rounded") %>
+          <div class="card-body">
+          <h5 class="card-title mb-1">Profesor: <%= @course.user.first_name %> <%= @course.user.last_name %></h5>
+          <h6 class="card-title text-muted m-0">Enrrolados: <%= @course.enrollments.count %></h6>
+          <h6 class="card-title text-muted m-0">Lecciones: <%= @course.lessons.count %></h6>
+          <h6 class="card-title text-muted m-0 mb-3">Comentarios: <%= @course.comments.count %></h6>
+            <div class="text-right">
+            <% if @enrollment_status == "Si" %>
+              <% if @firs_lesson_id.nil?%>
+                <p>No hay lecciones para este curso</p>
+              <% else %>
+                <button class="btn btn-success" role="butto"><%= a = link_to "Ir al curso", course_enrollment_lesson_path(course_id: @course.id, enrollment_id: @enrollment.id, id: @firs_lesson_id), class: "text-white" %></button>
+              <% end %>
+            <% else %>
+              <button class="btn btn-success btn-right" role="butto"><%= link_to "Subcribirse", course_enrollments_path(@course),  method: :post, class: "text-white", data: {confirm: "¡Estás a un paso de enrrolarte!, por favor confirma."} %></button>
+            <% end %>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
 </div>
