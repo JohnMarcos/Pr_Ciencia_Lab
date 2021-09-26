@@ -1,37 +1,41 @@
-<div class="container p-3">
-<h1>Editor de Cursos</h1>
-<p>Apreciado profesor, bienvenido al editor de cursos.</p>
-<% @courses.each do |c| %>
-<p><%= cl_image_tag c.image.key, height: 300, width: 400, crop: :fill %></p>
-<% enrollment_course = Enrollment.find_by(course_id: c.id, user_id: current_user.id) %>
-<h2>Curso: <%= c.name %></h2>
-<p>Profesor: <%= c.user.first_name %> <%= c.user.last_name %></p>
-<p>Lecciones: <%= c.lessons.count %></p>
-<p>Ultima actualización: <%= c.updated_at %></p>
-<p>Alumnos inscritos: <%= c.enrollments.count %></p>
-<p>Inscrito?: <%= enrollment_course.nil? ? "No" : "Si" %></p>
-<p><%= c.comments.count %> Comentarios</p>
-<%= link_to "Ver Curso", course_path(c.id) %> || 
-<%= link_to "Editar Curso", edit_course_path(c.id) %> || 
-<%= link_to "Borrar Curso", course_path(c.id),  method: :delete, data: {confirm: "¿Esta seguro?"} %> || 
-<% if enrollment_course.nil? %>
-<%= link_to "Enrrolarse", course_enrollments_path(course_id: c.id), method: :post, data: {confirm: "¡Estas a un paso de Enrollarte!, por favor confirma"} %> || 
-<% else %>
-<%= link_to "Crear Lección", new_course_enrollment_lesson_path(course_id: c.id, enrollment_id: enrollment_course.id) %> ||
-<% end %>
-<% if c.lessons.first.nil? %>
-No hay lecciones creadas
-<% else %>
-<%= link_to "Editor de Lecciones", course_enrollment_lesson_mis_lecciones_creadas_path(course_id: c.id, enrollment_id: enrollment_course.id, lesson_id: c.lessons.first.id) %>
-<% end %>
-<% end %>
-<br/>
-<br/>
-<p><%= link_to "Crear Curso", new_course_path %></p>
-<%= link_to "Home", root_path %> ||
-<% if @courses.first.nil? %>
-No hay cursos creados
-<% else %>
-<%= link_to "Mis Cursos Enrrolados", mis_cursos_enrrolados_course_enrollments_path(course_id: @enrollments_current_user.first.id) %>
-<% end %>
+<div class="container">
+	<h1 class="title mt-5 text-success font-weight-bold cl-text-shadow">Editor de Cursos</h1>
+	<h5>Apreciado profesor, bienvenido al editor de cursos.</h5>
+</div>
+<div class="container">
+	<div class="row row g-0 row-cols-3 justify-content-around">
+		<% @courses.each do |c| %>
+			<div class="col-12 col-md-6 col-lg-4">
+				<div class="card rounded mt-3">
+					<%= cl_image_tag(c.image.key, class: "card-img-top rounded") %>
+						<div class="card-body">
+							<% enrollment_course = Enrollment.find_by(course_id: c.id, user_id: current_user.id) %>
+							<h5 class="card-title m-0"><%= c.name %></h5>
+							<h6 class="text-muted pl-1">Profesor: <%= c.user.first_name %> <%= c.user.last_name %></h6>
+							<h6 class="card-title text-muted m-0">Lecciones: <%= c.lessons.count %></h6>
+							<h6 class="card-title text-muted m-0">Ultima actualización: <%= c.updated_at %></h6>
+							<h6 class="card-title text-muted m-0">Alumnos inscritos: <%= c.enrollments.count %></h6>
+							<h6 class="card-title text-muted m-0 mb-3"><%= c.comments.count %> Comentarios</h6>
+			
+							<%= link_to "Ver Curso", course_path(c.id) %> || 
+							<%= link_to "Editar Curso", edit_course_path(c.id) %> || 
+							<%= link_to "Borrar Curso", course_path(c.id),  method: :delete, data: {confirm: "¿Esta seguro?"} %> || 
+							<% if enrollment_course.nil? %>
+							<%= link_to "Enrrolarse", course_enrollments_path(course_id: c.id), method: :post, data: {confirm: "¡Estas a un paso de Enrollarte!, por favor confirma"} %> || 
+							<% else %>
+							<%= link_to "Crear Lección", new_course_enrollment_lesson_path(course_id: c.id, enrollment_id: enrollment_course.id) %> ||
+							<% end %>
+							<% if c.lessons.first.nil? %>
+							No hay lecciones creadas
+							<% else %>
+							<%= link_to "Editor de Lecciones", course_enrollment_lesson_mis_lecciones_creadas_path(course_id: c.id, enrollment_id: enrollment_course.id, lesson_id: c.lessons.first.id) %>
+							<% end %>
+						</div>
+				</div>
+			</div>
+		<% end %>
+	</div>
+	<div class="text-right mt-3 mb-3">
+			<button class="btn btn-success" role="butto"><%= link_to "Crear Curso", new_course_path, class: "text-white" %></button>
+	</div>	
 </div>
