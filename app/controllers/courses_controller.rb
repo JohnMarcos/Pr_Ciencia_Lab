@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index]
   def index
     @courses = Course.all
-    @current_user_enrollments = current_user.enrollments.where(user_id: current_user.id)
   end
 
   def show

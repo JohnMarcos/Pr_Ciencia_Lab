@@ -1,4 +1,5 @@
 class LessonsController < ApplicationController
+  before_action :authenticate_user!
   def show
     @current_user_enrollments = current_user.enrollments.where(user_id: current_user.id)
     @course = Course.find(params[:course_id])
